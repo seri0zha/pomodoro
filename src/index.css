@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap');
+@font-face {
+    font-family: 'Origa';
+    src: url('/src/fonts/origa.woff2');
+}
+
 body {
     margin: 0 auto;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 24px;
-    background-color: #b4b4b4;
+    background-color: #e3e3e3;
 }

@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
 import React, {useEffect} from "react";
 import PomodoroStore from "../../Stores/PomodoroStore";
+import styles from './Time.module.css';
 
 const Time: React.FC = observer(() => {
   const minutes: string = PomodoroStore.minutes.toString().padStart(2, '0');
@@ -9,7 +10,7 @@ const Time: React.FC = observer(() => {
     document.title = `${minutes}:${seconds} pomodoro`;
   }, [minutes, seconds])
   return (
-    <div>
+    <div className={styles.time}>
       {`${minutes}:${seconds}`}
     </div>
   )
