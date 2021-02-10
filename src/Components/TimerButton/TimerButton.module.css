@@ -1,0 +1,10 @@
+.button {
+    border: 0;
+    background-color: white;
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+.button:hover {
+    background-color: aliceblue;
+}
