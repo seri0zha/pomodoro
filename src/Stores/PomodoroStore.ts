@@ -2,11 +2,11 @@ import {action, computed, makeObservable, observable} from 'mobx';
 
 class PomodoroStore {
   readonly defaultCountdownTime: number = 25 * 60 * 1000;
+  @observable timerIsRunning: boolean = false;
   @observable countdownTime: number = this.defaultCountdownTime;
   @computed get minutes() {return Math.floor(this.countdownTime / 1000 / 60)};
   @computed get seconds() {return this.countdownTime/1000 - this.minutes*60};
   timerId: any;
-  timerIsRunning: boolean = false;
   startTime: number = new Date().getTime();
 
   constructor() {
@@ -27,6 +27,7 @@ class PomodoroStore {
       }, 100);
     }
   }
+
   stopTimer = () => {
     if (this.timerIsRunning) {
       window.clearInterval(this.timerId);
