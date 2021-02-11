@@ -1,5 +1,13 @@
 .time {
-    color: #f0f0f0;
+    top: 50%;
+    color: #dcdcdc;
     font-family: 'Origa', monospace;
-    font-size: 2em;
+    font-size: 4em;
+    user-select: none;
+}
+
+@media screen and (max-width: 420px) {
+    .time {
+        font-size: 18vw;
+    }
 }
