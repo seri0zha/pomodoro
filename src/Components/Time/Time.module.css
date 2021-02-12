@@ -1,7 +1,7 @@
 .time {
     top: 50%;
-    color: #dcdcdc;
-    font-family: 'Origa', monospace;
+    color: white;
+    font-family: 'Noto Mono', monospace;
     font-size: 4em;
     user-select: none;
 }

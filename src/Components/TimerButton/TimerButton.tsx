@@ -1,6 +1,5 @@
 import React from "react";
 import styles from './TimerButton.module.css';
-import Time from "../Time/Time";
 import pomodoroStore from '../../Stores/PomodoroStore';
 
 const pomodoroOnClick = () => {
@@ -11,7 +10,7 @@ const TimerButton = (): JSX.Element => {
   return (
     <button className={styles.button}
             onClick={pomodoroOnClick}>
-      <Time/>
+      Start
     </button>
   )
 }
