@@ -7,10 +7,10 @@
     font-size: 0.75em;
 }
 .button:hover {
-    background-color: #f53d38;
+    background-color: rgba(223,223,223,0.44);
     cursor: pointer;
 }
 
 .active {
-    background-color: #f53d38;
+    background-color: rgba(223,223,223,0.44);
 }

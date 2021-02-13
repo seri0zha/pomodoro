@@ -12,6 +12,7 @@
 }
 
 .button:hover {
-    background-color: #f5544e;
+    background-color: rgba(223,223,223,0.44);
+    transition: 0.15s;
     cursor: pointer;
 }
