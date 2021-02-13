@@ -3,11 +3,11 @@ import styles from './TimerButton.module.css';
 import pomodoroStore from '../../../Stores/PomodoroStore';
 import {observer} from "mobx-react";
 
-const TimerButton = observer((): JSX.Element => {
-  const pomodoroOnClick = () => {
-    pomodoroStore.timerIsRunning ? pomodoroStore.stopTimer() : pomodoroStore.startTimer();
-  }
+const pomodoroOnClick = () => {
+  pomodoroStore.timerIsRunning ? pomodoroStore.stopTimer() : pomodoroStore.startTimer();
+}
 
+const TimerButton = observer((): JSX.Element => {
   return (
     <button className={styles.button}
             onClick={pomodoroOnClick}>
