@@ -1,17 +1,16 @@
 .button {
-    color: white;
-    border: 1px solid white;
-    border-radius: 5px;
+    border: 0;
     background-color: inherit;
-    text-transform: uppercase;
-    font-size: 0.8em;
-    margin: 10px 0;
-    padding: 5px 0;
-    width: 200px;
+    color: white;
     outline: none;
+    padding: 5px 10px;
+    font-size: 0.75em;
+}
+.button:hover {
+    background-color: #f53d38;
+    cursor: pointer;
 }
 
-.button:hover {
-    background-color: #f5544e;
-    cursor: pointer;
+.active {
+    background-color: #f53d38;
 }

@@ -1,7 +1,7 @@
 import {action, computed, makeObservable, observable} from 'mobx';
 
 class PomodoroStore {
-  readonly defaultCountdownTime: number = 25 * 60 * 1000;
+  @observable defaultCountdownTime: number = 25 * 60 * 1000;
   @observable timerIsRunning: boolean = false;
   @observable countdownTime: number = this.defaultCountdownTime;
   @computed get minutes() {return Math.floor(this.countdownTime / 1000 / 60)};
@@ -38,6 +38,12 @@ class PomodoroStore {
 
   @action setCountdownTime = (countdownTime: number) => {
     this.countdownTime = countdownTime;
+  }
+
+  @action setDefaultCountdownTime = (defaultCountdownTime: number) => {
+    this.stopTimer();
+    this.defaultCountdownTime = defaultCountdownTime;
+    this.countdownTime = defaultCountdownTime;
   }
 }
 
