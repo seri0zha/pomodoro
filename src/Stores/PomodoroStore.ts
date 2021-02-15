@@ -6,7 +6,7 @@ class PomodoroStore {
   @observable countdownTime: number = this.defaultCountdownTime;
   @computed get minutes() {return Math.floor(this.countdownTime / 1000 / 60)};
   @computed get seconds() {return this.countdownTime/1000 - this.minutes*60};
-  timerId: any;
+  timerId: number = 0;
   startTime: number = new Date().getTime();
 
   constructor() {
@@ -15,9 +15,9 @@ class PomodoroStore {
 
   startTimer = () => {
     if (!this.timerIsRunning) {
-      this.timerIsRunning = true;
+      this.setTimerIsRunning(true);
       this.startTime = new Date().getTime();
-      this.timerId = setInterval(() => {
+      this.timerId = window.setInterval(() => {
         if (this.countdownTime === 0) {
           this.stopTimer();
         } else if (new Date().getTime() - this.startTime >= 1000) {
@@ -31,19 +31,26 @@ class PomodoroStore {
   stopTimer = () => {
     if (this.timerIsRunning) {
       window.clearInterval(this.timerId);
-      this.timerIsRunning = false;
+      this.setTimerIsRunning(false);
       this.setCountdownTime(this.defaultCountdownTime);
     }
   }
 
-  @action setCountdownTime = (countdownTime: number) => {
+  @action
+  setCountdownTime = (countdownTime: number) => {
     this.countdownTime = countdownTime;
   }
 
-  @action setDefaultCountdownTime = (defaultCountdownTime: number) => {
+  @action
+  setDefaultCountdownTime = (defaultCountdownTime: number) => {
     this.stopTimer();
     this.defaultCountdownTime = defaultCountdownTime;
     this.countdownTime = defaultCountdownTime;
+  }
+
+  @action
+  setTimerIsRunning = (timerIsRunning: boolean) => {
+    this.timerIsRunning = timerIsRunning;
   }
 }
 

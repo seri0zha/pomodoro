@@ -4,12 +4,12 @@ import Header from "../Header/Header";
 import Pomodoro from "../Pomodoro/Pomodoro";
 import Tasks from "../Tasks/Tasks";
 import pomodoroStore from "../../Stores/PomodoroStore";
-import {Helmet} from "react-helmet";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 import {observer} from "mobx-react";
 
 
 const handleKeyPress = (e: KeyboardEvent) => {
-  const {keyCode} = e;
+  const { keyCode } = e;
   if (keyCode === 32) {
     if (pomodoroStore.timerIsRunning) {
       pomodoroStore.stopTimer();
@@ -36,10 +36,10 @@ const App = observer(() => {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [handleKeyPress]);
+  });
 
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <style>
           {`body {
@@ -53,7 +53,7 @@ const App = observer(() => {
         <Pomodoro />
         <Tasks />
       </div>
-    </>
+    </HelmetProvider>
   );
 });
 
