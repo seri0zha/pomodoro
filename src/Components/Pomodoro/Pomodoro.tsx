@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Pomodoro.module.css';
-import pomodoroStore from '../../Stores/PomodoroStore';
+import pomodoroStore from '../../Stores/pomodoroStore';
 import Time from "../Time/Time";
 import TimerCommonButton from "../Buttons/TimerCommonButton"
 import {observer} from "mobx-react";

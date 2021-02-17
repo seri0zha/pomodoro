@@ -1,5 +1,5 @@
 import switchButtonStyles from "./SwitchButton.module.css";
-import pomodoroStore from "../../../Stores/PomodoroStore";
+import pomodoroStore from "../../../Stores/pomodoroStore";
 
 const switchButton = {
   styles: switchButtonStyles,

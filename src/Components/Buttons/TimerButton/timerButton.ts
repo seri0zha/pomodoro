@@ -1,5 +1,5 @@
 import timerButtonStyles from "./TimerButton.module.css";
-import pomodoroStore from "../../../Stores/PomodoroStore";
+import pomodoroStore from "../../../Stores/pomodoroStore";
 
 const timerButton = {
   styles: timerButtonStyles,

@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import React, {useEffect} from "react";
-import PomodoroStore from "../../Stores/PomodoroStore";
+import PomodoroStore from "../../Stores/pomodoroStore";
 import styles from './Time.module.css';
 
 const Time: React.FC = observer(() => {

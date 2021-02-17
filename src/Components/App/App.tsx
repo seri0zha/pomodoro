@@ -3,7 +3,7 @@ import styles from './App.module.css';
 import Header from "../Header/Header";
 import Pomodoro from "../Pomodoro/Pomodoro";
 import Tasks from "../Tasks/Tasks";
-import pomodoroStore from "../../Stores/PomodoroStore";
+import pomodoroStore from "../../Stores/pomodoroStore";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import {observer} from "mobx-react";
 
