@@ -6,7 +6,7 @@ import Tasks from "../Tasks/Tasks";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import {observer} from "mobx-react";
 import {PomodoroContext} from "../../Stores/pomodoroStore";
-
+import { useBeforeunload } from "react-beforeunload";
 const getColor = (defaultTime: number): string => {
   switch (defaultTime) {
     case 5 * 60 * 1000:
@@ -26,6 +26,12 @@ const App = observer(() => {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
+  });
+
+  useBeforeunload(() => {
+    if (pomodoroStore.timerIsRunning) {
+      return "Your progress will not be saved.";
+    }
   });
 
   const handleKeyPress = (e: KeyboardEvent) => {

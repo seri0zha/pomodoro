@@ -1,8 +1,7 @@
 import { observer } from "mobx-react";
 import React, {useContext, useEffect} from "react";
-import styles from './Time.module.css';
+import styles from "./Time.module.css";
 import {PomodoroContext} from "../../Stores/pomodoroStore";
-
 const Time: React.FC = observer(() => {
   const pomodoroStore = useContext(PomodoroContext);
   const minutes: string = pomodoroStore.minutes.toString().padStart(2, '0');
