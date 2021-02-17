@@ -4,9 +4,10 @@ import Header from "../Header/Header";
 import Pomodoro from "../Pomodoro/Pomodoro";
 import Tasks from "../Tasks/Tasks";
 import {Helmet, HelmetProvider} from "react-helmet-async";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {PomodoroContext} from "../../Stores/pomodoroStore";
 import { useBeforeunload } from "react-beforeunload";
+
 const getColor = (defaultTime: number): string => {
   switch (defaultTime) {
     case 5 * 60 * 1000:

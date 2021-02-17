@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Pomodoro.module.css';
 import Time from "../Time/Time";
 import TimerCommonButton from "../Buttons/TimerCommonButton"
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import switchButton from "../Buttons/switchButton/switchButton";
 import timerButton from "../Buttons/timerButton/timerButton";
 
