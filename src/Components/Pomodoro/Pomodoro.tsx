@@ -1,19 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './Pomodoro.module.css';
-import pomodoroStore from '../../Stores/pomodoroStore';
 import Time from "../Time/Time";
 import TimerCommonButton from "../Buttons/TimerCommonButton"
 import {observer} from "mobx-react";
 import switchButton from "../Buttons/switchButton/switchButton";
 import timerButton from "../Buttons/timerButton/timerButton";
-
-window.onbeforeunload = () => {
-  if (pomodoroStore.timerIsRunning) {
-    return "Your progress will not be saved.";
-  }
-}
+import {PomodoroContext} from "../../Stores/pomodoroStore";
 
 const Pomodoro: React.FC = observer(() => {
+  const pomodoroStore = useContext(PomodoroContext);
+  window.onbeforeunload = () => {
+    if (pomodoroStore.timerIsRunning) {
+      return "Your progress will not be saved.";
+    }
+  }
+
   return (
     <main className={styles.main}>
       <TimerCommonButton text='Pomodoro'

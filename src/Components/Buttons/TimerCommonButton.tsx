@@ -1,5 +1,4 @@
 import React from "react";
-import {observer} from "mobx-react";
 
 interface TimerButtonProps {
   className: string,
@@ -7,7 +6,7 @@ interface TimerButtonProps {
   text: string,
 }
 
-const TimerCommonButton = observer((props: TimerButtonProps) => {
+const TimerCommonButton = (props: TimerButtonProps) => {
   return (
     <button className={props.className}
             onClick={props.onClickCallback}
@@ -15,6 +14,6 @@ const TimerCommonButton = observer((props: TimerButtonProps) => {
       {props.text}
     </button>
   )
-});
+};
 
 export default TimerCommonButton;

@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './Components/App/App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import pomodoroStore, {PomodoroContext} from "./Stores/pomodoroStore";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <PomodoroContext.Provider value={pomodoroStore}>
+      <App />
+    </PomodoroContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
