@@ -1,12 +1,13 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styles from './App.module.css';
 import Header from "../Header/Header";
 import Pomodoro from "../Pomodoro/Pomodoro";
 import Tasks from "../Tasks/Tasks";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import {observer} from "mobx-react-lite";
-import {PomodoroContext} from "../../Stores/pomodoroStore";
 import { useBeforeunload } from "react-beforeunload";
+import { useSelector } from 'react-redux'
+import {RootState} from "../../Stores/pomodoroStoreRedux";
 
 const getColor = (defaultTime: number): string => {
   switch (defaultTime) {
@@ -20,7 +21,8 @@ const getColor = (defaultTime: number): string => {
 }
 
 const App = observer(() => {
-  const pomodoroStore = useContext(PomodoroContext);
+  /*const pomodoroStore = useContext(PomodoroContext);*/
+  const {timerIsRunning, stopTimer, startTimer, initialCountdownTime} = useSelector((state: RootState) => state.pomodoro);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -30,7 +32,7 @@ const App = observer(() => {
   });
 
   useBeforeunload(() => {
-    if (pomodoroStore.timerIsRunning) {
+    if (timerIsRunning) {
       return "Your progress will not be saved.";
     }
   });
@@ -38,10 +40,10 @@ const App = observer(() => {
   const handleKeyPress = (e: KeyboardEvent) => {
     const {keyCode} = e;
     if (keyCode === 32) {
-      if (pomodoroStore.timerIsRunning) {
-        pomodoroStore.stopTimer();
+      if (timerIsRunning) {
+        stopTimer();
       } else {
-        pomodoroStore.startTimer();
+        startTimer();
       }
     }
   }
@@ -51,7 +53,7 @@ const App = observer(() => {
       <Helmet>
         <style>
           {`body {
-              background-color: ${getColor(pomodoroStore.defaultCountdownTime)};
+              background-color: ${getColor(initialCountdownTime)};
               transition: background-color 500ms ease-out;
           }`}
         </style>

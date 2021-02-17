@@ -1,5 +1,5 @@
 import {action, computed, makeObservable, observable} from 'mobx';
-import React, {createContext} from "react";
+import {createContext} from "react";
 
 class PomodoroStore {
   @observable defaultCountdownTime: number = 25 * 60 * 1000;

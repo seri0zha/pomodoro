@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './Components/App/App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import pomodoroStore, {PomodoroContext} from "./Stores/pomodoroStore";
+import {Provider} from 'react-redux';
+import pomodoroStoreRedux from "./Stores/pomodoroStoreRedux";
 
 ReactDOM.render(
   <React.StrictMode>
-    <PomodoroContext.Provider value={pomodoroStore}>
+    <Provider store={pomodoroStoreRedux}>
       <App />
-    </PomodoroContext.Provider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
