@@ -1,6 +1,6 @@
 import {Action, ActionCreator} from "redux";
 import {ThunkAction} from "redux-thunk";
-import {RootState} from "../Stores/pomodoroStoreRedux";
+import {RootState} from "../Stores/pomodoroStore";
 
 const SET_COUNTDOWN_TIME = "SET_COUNTDOWN_TIME";
 const SET_TIMER_IS_RUNNING = "SET_TIMER_IS_RUNNING";

@@ -1,5 +1,5 @@
 import styles from "./TimerButton.module.css";
-import { RootState } from "../../../Stores/pomodoroStoreRedux";
+import { RootState } from "../../../Stores/pomodoroStore";
 import { useSelector, useDispatch } from "react-redux";
 import { startTimer, stopTimer } from "../../../Reducers/pomodoroReducer";
 
@@ -20,6 +20,6 @@ const TimerButton = () => {
       {text}
     </button>
   )
-}
+};
 
 export default TimerButton;

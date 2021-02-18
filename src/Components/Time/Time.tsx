@@ -1,9 +1,8 @@
 import React, {useEffect} from "react";
-import { observer } from "mobx-react-lite";
 import styles from "./Time.module.css";
-import {RootState} from "../../Stores/pomodoroStoreRedux";
+import {RootState} from "../../Stores/pomodoroStore";
 import {useSelector} from "react-redux";
-const Time: React.FC = observer(() => {
+const Time: React.FC = () => {
   const {countdownTime} = useSelector((state: RootState) => state.pomodoro);
   const minutesNum: number = Math.floor(countdownTime / 1000 / 60);
   const secondsNum: number = countdownTime/1000 - minutesNum*60;
@@ -18,6 +17,6 @@ const Time: React.FC = observer(() => {
       {`${minutes}:${seconds}`}
     </div>
   );
-});
+};
 
 export default Time;

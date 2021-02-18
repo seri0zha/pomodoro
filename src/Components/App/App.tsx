@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import styles from './App.module.css';
 import Header from "../Header/Header";
 import Pomodoro from "../Pomodoro/Pomodoro";
 import Tasks from "../Tasks/Tasks";
 import {Helmet, HelmetProvider} from "react-helmet-async";
-import {observer} from "mobx-react-lite";
 import { useBeforeunload } from "react-beforeunload";
 import { useSelector, useDispatch } from 'react-redux'
-import {RootState} from "../../Stores/pomodoroStoreRedux";
+import {RootState} from "../../Stores/pomodoroStore";
 import {startTimer, stopTimer} from "../../Reducers/pomodoroReducer";
 
 const getColor = (defaultTime: number): string => {
@@ -19,12 +18,12 @@ const getColor = (defaultTime: number): string => {
     default:
       return 'rgba(130,30,18,0.8)';
   }
-}
+};
 
-const App = observer(() => {
-  /*const pomodoroStore = useContext(PomodoroContext);*/
+const App = (): ReactElement => {
   const {timerIsRunning, initialCountdownTime} = useSelector((state: RootState) => state.pomodoro);
   const dispatch = useDispatch();
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
     return () => {
@@ -39,15 +38,14 @@ const App = observer(() => {
   });
 
   const handleKeyPress = (e: KeyboardEvent) => {
-    const {keyCode} = e;
-    if (keyCode === 32) {
+    if (e.key === ' ') {
       if (timerIsRunning) {
         dispatch(stopTimer());
       } else {
         dispatch(startTimer());
       }
     }
-  }
+  };
 
   return (
     <HelmetProvider>
@@ -66,6 +64,6 @@ const App = observer(() => {
       </div>
     </HelmetProvider>
   );
-});
+};
 
 export default App;

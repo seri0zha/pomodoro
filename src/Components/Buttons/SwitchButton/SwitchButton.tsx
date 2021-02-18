@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { setCountdownTime, setInitialCountdownTime, stopTimer } from "../../../Reducers/pomodoroReducer";
-import { RootState } from "../../../Stores/pomodoroStoreRedux";
+import { RootState } from "../../../Stores/pomodoroStore";
 import styles from "./SwitchButton.module.css";
 
 interface TimerButtonProps {

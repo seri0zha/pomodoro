@@ -4,7 +4,7 @@ import App from './Components/App/App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import {Provider} from 'react-redux';
-import pomodoroStoreRedux from "./Stores/pomodoroStoreRedux";
+import pomodoroStoreRedux from "./Stores/pomodoroStore";
 
 ReactDOM.render(
   <React.StrictMode>
