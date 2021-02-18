@@ -1,5 +1,6 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import pomodoroReducer from "../Reducers/pomodoroReducer";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   pomodoro: pomodoroReducer,
@@ -7,5 +8,5 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-const pomodoroStoreRedux = createStore(rootReducer);
+const pomodoroStoreRedux = createStore(rootReducer, applyMiddleware(thunk));
 export default pomodoroStoreRedux;
