@@ -1,8 +1,9 @@
 import {action, computed, makeObservable, observable} from 'mobx';
-import React, {createContext} from "react";
+import {createContext} from "react";
 
+const minutes = 60 * 1000;
 class PomodoroStore {
-  @observable defaultCountdownTime: number = 25 * 60 * 1000;
+  @observable defaultCountdownTime: number = 25 * minutes;
   @observable timerIsRunning: boolean = false;
   @observable countdownTime: number = this.defaultCountdownTime;
   @computed get minutes() {return Math.floor(this.countdownTime / 1000 / 60)};
@@ -15,26 +16,26 @@ class PomodoroStore {
   }
 
   startTimer = () => {
-    if (!this.timerIsRunning) {
-      this.setTimerIsRunning(true);
-      this.startTime = new Date().getTime();
-      this.timerId = window.setInterval(() => {
-        if (this.countdownTime === 0) {
-          this.stopTimer();
-        } else if (new Date().getTime() - this.startTime >= 1000) {
-          this.setCountdownTime(this.countdownTime - 1000);
-          this.startTime += 1000;
+    this.setTimerIsRunning(true);
+    this.startTime = new Date().getTime();
+    this.timerId = window.setInterval(() => {
+      if (this.countdownTime === 0) {
+        this.stopTimer();
+        if (this.defaultCountdownTime === 25 * minutes) {
+          this.setDefaultCountdownTime(5 * minutes);
+          this.startTimer();
         }
-      }, 100);
-    }
+      } else if (new Date().getTime() - this.startTime >= 1000) {
+        this.setCountdownTime(this.countdownTime - 1000);
+        this.startTime += 1000;
+      }
+    }, 100);
   }
 
   stopTimer = () => {
-    if (this.timerIsRunning) {
-      window.clearInterval(this.timerId);
-      this.setTimerIsRunning(false);
-      this.setCountdownTime(this.defaultCountdownTime);
-    }
+    window.clearInterval(this.timerId);
+    this.setTimerIsRunning(false);
+    this.setCountdownTime(this.defaultCountdownTime);
   }
 
   @action
@@ -44,7 +45,9 @@ class PomodoroStore {
 
   @action
   setDefaultCountdownTime = (defaultCountdownTime: number) => {
-    this.stopTimer();
+    if (this.timerIsRunning) {
+      this.stopTimer();
+    }
     this.defaultCountdownTime = defaultCountdownTime;
     this.countdownTime = defaultCountdownTime;
   }
