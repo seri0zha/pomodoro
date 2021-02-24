@@ -36,8 +36,7 @@ const App = observer(() => {
   });
 
   const handleKeyPress = (e: KeyboardEvent) => {
-    const {keyCode} = e;
-    if (keyCode === 32) {
+    if (e.key === ' ') {
       if (pomodoroStore.timerIsRunning) {
         pomodoroStore.stopTimer();
       } else {
