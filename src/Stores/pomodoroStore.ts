@@ -9,6 +9,7 @@ class PomodoroStore {
   @computed get minutes() {return Math.floor(this.countdownTime / 1000 / 60)};
   @computed get seconds() {return this.countdownTime/1000 - this.minutes*60};
   timerId: number = 0;
+  finishedPomodorosCount: number = 0;
   startTime: number = new Date().getTime();
 
   constructor() {
@@ -21,9 +22,19 @@ class PomodoroStore {
     this.timerId = window.setInterval(() => {
       if (this.countdownTime === 0) {
         this.stopTimer();
+        this.finishedPomodorosCount++;
         if (this.defaultCountdownTime === 25 * minutes) {
-          this.setDefaultCountdownTime(5 * minutes);
-          this.startTimer();
+          // if countdown is finished then start break countdown
+          if (this.finishedPomodorosCount === 4) {
+            // if pomodoros in row count is four than start 15 minutes break
+            this.finishedPomodorosCount = 0;
+            this.setDefaultCountdownTime(15 * minutes);
+            this.startTimer();
+          } else {
+            //else start 5 minutes break;
+            this.setDefaultCountdownTime(5 * minutes);
+            this.startTimer();
+          }
         }
       } else if (new Date().getTime() - this.startTime >= 1000) {
         this.setCountdownTime(this.countdownTime - 1000);
